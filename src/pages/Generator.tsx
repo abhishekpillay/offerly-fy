@@ -1,7 +1,7 @@
 
 import OfferLetterForm from "@/components/OfferLetterForm/OfferLetterForm";
-import { Navbar } from "@/components/Layout/Navbar";
-import { Footer } from "@/components/LandingPage/Footer";
+import Navbar from "@/components/Layout/Navbar";
+import Footer from "@/components/LandingPage/Footer";
 
 const Generator = () => {
   return (
