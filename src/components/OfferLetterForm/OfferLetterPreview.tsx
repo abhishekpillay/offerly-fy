@@ -10,7 +10,7 @@ interface OfferLetterPreviewProps {
 
 const OfferLetterPreview: React.FC<OfferLetterPreviewProps> = ({ formData }) => {
   return (
-    <div className="bg-white p-8 rounded-lg min-h-full relative">
+    <div className="bg-white p-8 rounded-lg shadow-sm min-h-full relative">
       <div className="mb-12">
         <div className="flex items-center gap-4 mb-8">
           <div className="bg-[#FF543D] h-12 w-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -129,9 +129,9 @@ const OfferLetterPreview: React.FC<OfferLetterPreviewProps> = ({ formData }) => 
       </div>
 
       <Button 
-        variant="ghost" 
+        variant="outline" 
         size="sm" 
-        className="absolute top-8 right-8 text-[#F06449] hover:text-[#F06449]/90 gap-2 font-medium"
+        className="absolute top-8 right-8 text-[#F06449] border-[#F06449] hover:bg-[#F06449]/5 hover:text-[#F06449] gap-2 font-medium"
       >
         Download
         <Download className="w-4 h-4" />

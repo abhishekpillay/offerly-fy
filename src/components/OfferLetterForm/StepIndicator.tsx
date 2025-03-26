@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { FormStep } from './types';
+import { Check } from 'lucide-react';
 
 interface StepIndicatorProps {
   steps: FormStep[];
@@ -8,23 +9,56 @@ interface StepIndicatorProps {
 }
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, currentStep }) => {
+  const currentIndex = steps.indexOf(currentStep);
+
   return (
-    <div className="flex items-center justify-start mb-12 gap-2">
-      {steps.map((step, index) => (
-        <div key={step} className="flex items-center">
-          <div className={`
-            w-12 h-12 rounded-full flex items-center justify-center text-base font-medium border-2
-            ${currentStep === step 
-              ? 'bg-[#1B4D3E] border-[#1B4D3E] text-white' 
-              : 'border-[#1B4D3E] text-[#1B4D3E] bg-white'}
-          `}>
-            {index + 1}
-          </div>
-          {index < steps.length - 1 && (
-            <div className="w-28 h-0.5 bg-[#1B4D3E] mx-2" />
-          )}
-        </div>
-      ))}
+    <div className="flex justify-between items-center w-full">
+      {steps.map((step, index) => {
+        const isCompleted = index < currentIndex;
+        const isActive = index === currentIndex;
+        
+        return (
+          <React.Fragment key={step}>
+            <div className="flex flex-col items-center">
+              <div 
+                className={`
+                  flex items-center justify-center h-12 w-12 rounded-full 
+                  ${isCompleted 
+                    ? 'bg-[#FF543D] text-white' 
+                    : isActive 
+                      ? 'bg-[#FF543D] text-white' 
+                      : 'bg-gray-200 text-gray-500'
+                  } 
+                  transition-colors
+                `}
+              >
+                {isCompleted ? (
+                  <Check className="w-6 h-6" />
+                ) : (
+                  <span className="text-lg font-semibold">{index + 1}</span>
+                )}
+              </div>
+              <span 
+                className={`
+                  mt-2 text-sm font-medium capitalize
+                  ${isCompleted || isActive ? 'text-[#333333]' : 'text-gray-500'}
+                `}
+              >
+                {step}
+              </span>
+            </div>
+            
+            {index < steps.length - 1 && (
+              <div 
+                className={`
+                  flex-1 h-1 max-w-32
+                  ${index < currentIndex ? 'bg-[#FF543D]' : 'bg-gray-200'}
+                `}
+              />
+            )}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 };
